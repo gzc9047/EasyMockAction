@@ -24,12 +24,14 @@ public class ActionWithParameter extends CustomAction {
                 handler = m;
                 if (parameterFilter.length != 0
                         && handler.getParameterTypes().length != parameterFilter.length) {
-                    throw new RuntimeException("handler parameter number wrong");
+                    throw new RuntimeException("handler parameter number wrong, you implemention has "
+                            + handler.getParameterTypes().length
+                            + " but you need is " + parameterFilter.length);
                 }
             }
         }
         if (handler == null) {
-            throw new RuntimeException("no handler");
+            throw new RuntimeException("no handler with method name: " + HANDLE_METHOD_NAME);
         }
         this.parameterFilter = parameterFilter;
     }
