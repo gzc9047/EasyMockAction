@@ -9,7 +9,9 @@ import org.jmock.api.Invocation;
 import org.jmock.lib.action.CustomAction;
 
 /**
- * example:
+ * This is use in jmock, if you used some other mock framework just need a little change.
+ *
+ * Example:
  * 1, this will use all the parameter when call CallSomeMethod to invoke "handle"
  * EXCEPT(XXX).CallSomeMethod(p1, p2).will(new ActionWithParameter(){
         public void handle(P1 p1, P2 p2) {

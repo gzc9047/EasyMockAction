@@ -1,0 +1,19 @@
+This is use in jmock, if you used some other mock framework just need a little change.
+
+My java is not good, if you has a better implemention, please share it.
+
+Example:
+1, this will use all the parameter when call CallSomeMethod to invoke "handle"
+EXCEPT(XXX).CallSomeMethod(p1, p2).will(new ActionWithParameter(){
+     public void handle(P1 p1, P2 p2) {
+         // do something.
+     }
+ })
+2, this will use the special parameter(first, third) of CallSomeMethod to invoke "handle"
+EXCEPT(XXX).CallSomeMethod(p1, p2, p3, p4, p5).will(new ActionWithParameter(0, 2){
+     public R handle(P1 p1, P3 p3) {
+         // do something.
+         return new R();
+     }
+ })
+
