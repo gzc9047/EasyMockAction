@@ -1,17 +1,19 @@
-This is use in jmock, if you used some other mock framework just need a little change.
+Make user easily to write a action when mock a method. I just want to do the ut with less boring code.
 
-My java is not good, if you has a better implemention, please share it.
+My java is not good(English is not good too), if you has a better implemention, please share it.
 
 Example:
 1, this will use all the parameter when call CallSomeMethod to invoke "handle"
-EXCEPT(XXX).CallSomeMethod(p1, p2).will(new ActionWithParameter(){
+exactly(1).of(mockX).CallSomeMethod( ... );
+will(new ActionWithParameter(){
      public void handle(P1 p1, P2 p2) {
          // do something.
      }
  })
-2, this will use the special parameter(first, third) of CallSomeMethod to invoke "handle"
-EXCEPT(XXX).CallSomeMethod(p1, p2, p3, p4, p5).will(new ActionWithParameter(0, 2){
-     public R handle(P1 p1, P3 p3) {
+2, this will use the special parameter(third, first) of CallSomeMethod to invoke "handle"
+exactly(1).of(mockX).CallSomeMethod(p1, p2, p3, p4, p5);
+will(new ActionWithParameter(2, 0){
+     R handle(P3 p3, P1 p1) {
          // do something.
          return new R();
      }
