@@ -1,5 +1,3 @@
-import sun.reflect.ReflectionFactory;
-
 import java.lang.reflect.Method;
 import java.lang.RuntimeException;
 import java.util.LinkedList;
@@ -34,6 +32,7 @@ public class ActionWithParameter extends CustomAction {
             throw new RuntimeException("no handler with method name: " + HANDLE_METHOD_NAME);
         }
         this.parameterFilter = parameterFilter;
+        handler.setAccessible(true);
     }
 
     @Override
@@ -48,9 +47,6 @@ public class ActionWithParameter extends CustomAction {
             }
             param = parameter.toArray();
         }
-        // Don't use Method.invoke because it check if the Class of this can be accessed.
-        // Such as Anonymous Classes in some method can't accessed public, it will fail the check.
-        // So I use the way Method.invoke do except the accessiblity check.
-        return ReflectionFactory.getReflectionFactory().newMethodAccessor(handler).invoke(this, param);
+        return handler.invoke(this, param);
     }
 }
